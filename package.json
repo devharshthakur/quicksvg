@@ -1,0 +1,25 @@
+{
+	"name": "quicksvg",
+	"version": "1.0.0",
+	"description": "PNG to SVG converter built with SvelteKit and FastAPI",
+	"private": true,
+	"scripts": {
+		"dev": "turbo run dev --ui tui",
+		"build": "turbo run build --ui tui",
+		"start": "turbo run start --ui tui",
+		"format": "turbo run format --ui tui",
+		"lint": "turbo run lint --ui tui",
+		"typecheck": "turbo run typecheck --ui tui",
+		"check:outdated": "turbo run check:outdated --ui tui"
+	},
+	"keywords": [],
+	"author": "Harsh Thakur <harshprojects2002@outlook.com>",
+	"license": "MIT",
+	"packageManager": "pnpm@11.3.0",
+	"type": "module",
+	"devDependencies": {
+		"prettier": "^3.8.3",
+		"tsx": "^4.22.3",
+		"turbo": "^2"
+	}
+}

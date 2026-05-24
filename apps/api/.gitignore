@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Virtual environment
+.venv/
+
+# Ruff cache
+.ruff_cache/
+
+# Type checker cache (ty runs mypy under the hood)
+.mypy_cache/
+
+# OS
+.DS_Store

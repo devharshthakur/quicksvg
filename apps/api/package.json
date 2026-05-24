@@ -1,0 +1,20 @@
+{
+	"name": "api",
+	"private": true,
+	"version": "1.0.0",
+	"description": "quicksvg backend — FastAPI for PNG to SVG conversion",
+	"type": "module",
+	"scripts": {
+		"dev": "uv run fastapi dev src/main.py",
+		"build": "uv sync",
+		"start": "uv run fastapi run src/main.py",
+		"format": "uv run ruff format src/",
+		"lint": "uv run ruff check src/ --fix",
+		"typecheck": "uv run ty check src/",
+		"check:outdated": "uv pip list --outdated && pnpm outdated"
+	},
+	"devDependencies": {
+		"@types/node": "^25.9.1",
+		"prettier": "^3.8.3"
+	}
+}
