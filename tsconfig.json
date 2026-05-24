@@ -1,0 +1,25 @@
+{
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "ESNext",
+		"types": ["node"],
+		"moduleResolution": "bundler",
+		"strict": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"verbatimModuleSyntax": true,
+		"noEmit": true,
+		"rootDir": "."
+	},
+	"include": [
+		"scripts/**/*.ts"
+	],
+	"exclude": [
+		"node_modules",
+		".turbo"
+	]
+}

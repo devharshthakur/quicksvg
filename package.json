@@ -11,6 +11,7 @@
 		"lint": "turbo run lint --ui tui",
 		"typecheck": "turbo run typecheck --ui tui",
 		"check:outdated": "turbo run check:outdated --ui tui",
+		"clean": "tsx scripts/clean.ts",
 		"lint-staged": "lint-staged",
 		"prepare": "husky"
 	},
@@ -20,6 +21,7 @@
 	"packageManager": "pnpm@11.3.0",
 	"type": "module",
 	"devDependencies": {
+		"@types/node": "^25.9.1",
 		"husky": "^9.1.7",
 		"lint-staged": "^17.0.5",
 		"prettier": "^3.8.3",
