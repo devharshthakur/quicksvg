@@ -9,8 +9,10 @@ authors = [
 requires-python = ">=3.14"
 dependencies = [
     "fastapi>=0.136.3",
+    "python-multipart>=0.0.20",
     "sqlmodel>=0.0.38",
     "uvicorn>=0.48.0",
+    "vtracer>=0.6.15",
 ]
 
 [dependency-groups]
