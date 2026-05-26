@@ -1,0 +1,45 @@
+# Git
+.git/
+.gitattributes
+.gitignore
+
+# Node
+node_modules/
+apps/*/node_modules/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.python-version
+apps/api/.venv/
+apps/api/.ruff_cache/
+apps/api/.mypy_cache/
+
+# SvelteKit
+apps/web/.svelte-kit/
+apps/web/build/
+
+# Turborepo
+.turbo/
+apps/*/.turbo/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Docs & scripts
+AGENTS.md
+scripts/
