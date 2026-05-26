@@ -19,6 +19,7 @@
 	},
 	"dependencies": {
 		"dompurify": "^3.4.5",
+		"mode-watcher": "^1.1.0",
 		"zod": "^4.4.3"
 	},
 	"devDependencies": {
