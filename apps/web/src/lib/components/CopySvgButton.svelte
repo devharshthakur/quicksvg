@@ -29,4 +29,3 @@
 		<span>Copy SVG</span>
 	{/if}
 </button>
-
