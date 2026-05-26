@@ -4,6 +4,7 @@
 	import { VALID_ACCEPT } from '$lib/constants';
 	import { convertImage } from './page.remote';
 	import DOMPurify from 'dompurify';
+	import CopySvgButton from '$lib/components/CopySvgButton.svelte';
 
 	let selected_file = $state<File | null>(null);
 	let uploading = $state<boolean>(false);
@@ -62,6 +63,7 @@
 
 	{#if sanitized_svg}
 		<div>{@html sanitized_svg}</div>
+		<CopySvgButton svg={converted_svg!} />
 	{/if}
 
 	{#if error}
