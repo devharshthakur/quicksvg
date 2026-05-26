@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { VALID_ACCEPT } from '$lib/constants';
 	import { convertImage } from './page.remote';
+	import DOMPurify from 'dompurify';
 
 	let selected_file = $state<File | null>(null);
 	let uploading = $state<boolean>(false);
 	let converted_svg = $state<string | null>(null);
+	let sanitized_svg = $derived(converted_svg ? DOMPurify.sanitize(converted_svg) : null);
 	let error = $state<string | null>(null);
 
 	function handleFileSelect(event: Event) {
@@ -54,8 +56,8 @@
 		{/if}
 	</div>
 
-	{#if converted_svg}
-		<div>{@html converted_svg}</div>
+	{#if sanitized_svg}
+		<div>{@html sanitized_svg}</div>
 	{/if}
 
 	{#if error}
