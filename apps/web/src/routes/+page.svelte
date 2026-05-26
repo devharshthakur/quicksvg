@@ -29,41 +29,56 @@
 			error = (e as Error).message;
 		}
 	}
+
+	function handleReupload() {
+		selected_file = null;
+		converted_svg = null;
+		error = null;
+	}
 </script>
 
 <div class="min-h-screen flex flex-col items-center justify-center max-w-4xl mx-auto gap-6 p-4">
-	<div class="flex items-center gap-4">
-		<!-- Choose file -->
-		<input
-			id="file-input"
-			type="file"
-			accept={VALID_ACCEPT}
-			class="hidden"
-			onchange={handleFileSelect}
-		/>
-		<label
-			for="file-input"
-			class="border-2 border-gray-300 px-4 py-2 rounded-lg cursor-pointer inline-block transition hover:bg-gray-100 text-sm select-none"
-		>
-			{selected_file ? selected_file.name : 'Choose File'}
-		</label>
-
-		<!-- Upload button -->
-		{#if selected_file}
-			<button
-				type="button"
-				onclick={handleUpload}
-				disabled={uploading}
-				class="bg-neutral-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-neutral-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
+	{#if !sanitized_svg}
+		<div class="flex items-center gap-4">
+			<!-- Choose file -->
+			<input
+				id="file-input"
+				type="file"
+				accept={VALID_ACCEPT}
+				class="hidden"
+				onchange={handleFileSelect}
+			/>
+			<label
+				for="file-input"
+				class="border-2 border-gray-300 px-4 py-2 rounded-lg cursor-pointer inline-block transition hover:bg-gray-100 text-sm select-none"
 			>
-				{uploading ? 'Uploading...' : 'Upload'}
-			</button>
-		{/if}
-	</div>
+				{selected_file ? selected_file.name : 'Choose File'}
+			</label>
+
+			<!-- Upload button -->
+			{#if selected_file}
+				<button
+					type="button"
+					onclick={handleUpload}
+					disabled={uploading}
+					class="bg-neutral-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-neutral-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
+				>
+					{uploading ? 'Uploading...' : 'Upload'}
+				</button>
+			{/if}
+		</div>
+	{/if}
 
 	{#if sanitized_svg}
 		<div>{@html sanitized_svg}</div>
 		<CopySvgButton svg={converted_svg!} />
+		<button
+			type="button"
+			onclick={handleReupload}
+			class="border-2 border-gray-300 px-4 py-2 rounded-lg text-sm hover:bg-gray-100 transition cursor-pointer"
+		>
+			Reupload
+		</button>
 	{/if}
 
 	{#if error}
