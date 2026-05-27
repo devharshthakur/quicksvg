@@ -1,6 +1,6 @@
 # quicksvg
 
-> PNG/JPEG/WebP to SVG converter — fast, self-hosted, built with SvelteKit and FastAPI.
+> PNG/JPEG/WebP to SVG converter — fast built with SvelteKit and FastAPI.
 
 Upload a raster image and get back a clean SVG vector. Runs entirely on your own infrastructure via Docker Compose.
 
@@ -16,6 +16,8 @@ Upload a raster image and get back a clean SVG vector. Runs entirely on your own
 - [pnpm](https://pnpm.io/) ≥ 11
 - [uv](https://docs.astral.sh/uv/) (Python package manager)
 - Python = 3.14
+
+### Manual
 
 ### 1. Install dependencies
 
@@ -46,7 +48,8 @@ This starts both the SvelteKit dev server and the FastAPI dev server via Turbore
 
 ---
 
-## Start the project with docker
+## With Docker
+Docker starts the project in production mode
 
 ```sh
 docker compose up --build

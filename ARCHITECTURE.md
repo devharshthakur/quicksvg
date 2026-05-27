@@ -52,32 +52,6 @@ User uploads image
   • User can copy SVG text to clipboard
 ```
 
-## Directory layout
-
-```
-apps/
-├── web/
-│   ├── src/
-│   │   ├── lib/
-│   │   │   ├── components/
-│   │   │   │   ├── CopySvgButton.svelte   # Copy-to-clipboard
-│   │   │   │   └── ModeToggle.svelte      # Light/dark toggle
-│   │   │   ├── constants.ts               # MIME types, file restrictions
-│   │   │   ├── utils.ts                   # cn() helper, type utilities
-│   │   │   └── index.ts
-│   │   └── routes/
-│   │       ├── +layout.svelte             # Root layout, theme toggle
-│   │       ├── +page.svelte               # Main upload/convert page
-│   │       └── page.remote.ts             # Server command → API call
-│   └── ...
-└── api/
-    └── src/
-        ├── main.py                        # FastAPI app, CORS, health
-        ├── routes.py                      # POST /api/convert
-        ├── services.py                    # vtracer conversion logic
-        └── constants.py                   # Size & type limits
-```
-
 ## Deployment
 
 See [Docker deployment](./README.md#docker-deployment) in README.
