@@ -11,7 +11,8 @@
 		"format": "uv run ruff format src/",
 		"lint": "uv run ruff check src/ --fix",
 		"typecheck": "uv run ty check src/",
-		"check:outdated": "uv pip list --outdated && pnpm outdated"
+		"check:outdated": "uv pip list --outdated && pnpm outdated",
+		"update:outdated": "uv lock --upgrade && uv sync"
 	},
 	"devDependencies": {
 		"@types/node": "^25.9.1",

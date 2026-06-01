@@ -8,6 +8,7 @@
 		"lint":      {},
 		"typecheck":       {},
 		"lint-staged":   {},
-		"check:outdated": {}
+		"check:outdated": { "cache": false },
+		"update:outdated": { "cache": false }
 	}
 }

@@ -11,6 +11,7 @@
 		"lint": "turbo run lint --ui tui",
 		"typecheck": "turbo run typecheck --ui tui",
 		"check:outdated": "turbo run check:outdated --ui tui",
+		"update:outdated": "turbo run update:outdated --ui tui",
 		"clean": "tsx scripts/clean.ts",
 		"lint-staged": "lint-staged",
 		"prepare": "husky"
