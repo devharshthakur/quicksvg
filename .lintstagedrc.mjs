@@ -1,35 +1,13 @@
-import path from 'node:path';
-
 /**
  * lint-staged standalone config
  * @see https://github.com/lint-staged/lint-staged#configuration
+ * @see https://github.com/lint-staged/lint-staged#how-to-use-lint-staged-in-a-multi-package-monorepo
  *
- * prettier & eslint live inside apps/web with per-package plugins.
- * ruff lives inside apps/api's uv-managed venv.
- * Each command cds into the package so tools find their configs & plugins.
+ * Per lint-staged monorepo pattern: closest config wins and tasks run in the
+ * config's directory. App-level configs live in apps/web and apps/api.
+ * This root config only matches files with no closer config (root files,
+ * scripts/, top-level configs, etc.).
  */
-const gitRoot = process.cwd();
-
 export default {
-	'apps/web/**/*.{js,ts,svelte,json,css,md,html}': (filenames) => {
-		const relative = filenames.map((f) =>
-			path.relative(path.join(gitRoot, 'apps/web'), f)
-		);
-		const commands = [
-			`cd apps/web && prettier --write ${relative.join(' ')}`
-		];
-		const lintFiles = relative.filter((f) => /\.(js|ts|svelte)$/.test(f));
-		if (lintFiles.length) {
-			commands.push(
-				`cd apps/web && eslint --fix ${lintFiles.join(' ')}`
-			);
-		}
-		return commands;
-	},
-	'apps/api/**/*.py': (filenames) => {
-		const relative = filenames.map((f) =>
-			path.relative(path.join(gitRoot, 'apps/api'), f)
-		);
-		return [`cd apps/api && uv run ruff check --fix ${relative.join(' ')}`];
-	}
+  "*": "prettier --ignore-unknown --write",
 };

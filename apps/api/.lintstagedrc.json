@@ -1,0 +1,4 @@
+{
+  "*.py": "uv run ruff check --fix",
+  "*.{toml,json}": "prettier --write"
+}
