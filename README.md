@@ -14,36 +14,13 @@ A small monorepo with two parts:
 - **apps/web/** — [SvelteKit](https://svelte.dev/) frontend for upload, preview, and download.
 - **apps/api/** — [FastAPI](https://fastapi.tiangolo.com/) backend that does the actual vectorization with [vtracer](https://github.com/visioncortex/vtracer).
 
-## Tech stack
+## Docs
 
-| Layer        | Tools                                                                         |
-| ------------ | ----------------------------------------------------------------------------- |
-| Frontend     | SvelteKit 5, TypeScript, Tailwind CSS v4, shadcn-svelte, Lucide, mode-watcher |
-| Backend      | FastAPI, Python 3.14, vtracer                                                 |
-| Sanitization | DOMPurify                                                                     |
-| Monorepo     | Turborepo, pnpm workspaces                                                    |
-| Quality      | ESLint, Prettier, Ruff, Husky, lint-staged, svelte-check, TypeScript          |
-| Deployment   | Docker Compose, `@sveltejs/adapter-node`, Uvicorn                             |
+- [ARCHITECTURE.md](./ARCHITECTURE.md) — data flow, component design, tech stack
+- [apps/web/README.md](./apps/web/README.md) — frontend details
+- [apps/api/README.md](./apps/api/README.md) — backend details
 
-## Project structure
-
-```
-quicksvg/
-├── apps/
-│   ├── web/          # SvelteKit frontend
-│   └── api/          # FastAPI backend
-├── compose.yaml      # Docker Compose for full-stack deployment
-├── turbo.json        # Turborepo pipeline config
-├── ARCHITECTURE.md   # Data flow and component design
-└── pnpm-workspace.yaml
-```
-
-For details on each app, see their respective READMEs:
-
-- [apps/web/README.md](./apps/web/README.md)
-- [apps/api/README.md](./apps/api/README.md)
-
-## Manual development setup
+## Quick start
 
 ### Prerequisites
 
@@ -52,22 +29,17 @@ For details on each app, see their respective READMEs:
 - [uv](https://docs.astral.sh/uv/) — Python package manager
 - Python `= 3.14`
 
-### 1. Install dependencies
+### Install
 
 ```sh
 pnpm install
 cd apps/api && uv sync && cd ../..
-```
-
-### 2. Configure the web app
-
-```sh
 cp apps/web/.env.example apps/web/.env
 ```
 
 The default `API_BASE_URL=http://localhost:8000` works out of the box for local dev.
 
-### 3. Start both apps
+### Run (dev)
 
 ```sh
 pnpm dev
@@ -77,7 +49,6 @@ This runs both dev servers in parallel via Turborepo:
 
 - Web: <http://localhost:5173>
 - API: <http://localhost:8000>
-- Health: <http://localhost:8000/health>
 
 ## Docker
 
@@ -87,27 +58,12 @@ docker compose up --build
 
 - Web UI: <http://localhost:4173>
 - API: <http://localhost:8000>
-- Health: <http://localhost:8000/health>
 
 Persistent volumes (`api_data`, `api_logs`) survive container restarts. Add `-v` to `docker compose down` to wipe them.
 
-### Production notes
+For production deployment notes (TLS, auth, volume backups), see [ARCHITECTURE.md → Deployment](./ARCHITECTURE.md#deployment).
 
-- Put behind a reverse proxy (Caddy, Nginx, Traefik) for TLS. Set `ORIGIN` on the web service to match your public URL.
-- No auth is built in — front it with a proxy (Cloudflare Access, Authentik, oauth2-proxy) if you need it.
-- Persistent volumes keep data and logs across rebuilds. Back them up like any other Docker volume.
-
-## Contributing
-
-1. Fork the repo and create a feature branch.
-2. `pnpm install && cd apps/api && uv sync`
-3. `pnpm dev` for hot reload on both apps.
-4. Before opening a PR: `pnpm lint`, `pnpm typecheck`, `pnpm format`.
-5. Husky runs linters and formatters on staged files when you commit.
-
-See [ARCHITECTURE.md](./ARCHITECTURE.md) for a deeper look at how the pieces fit together.
-
-### Useful scripts
+## Useful scripts
 
 | Command          | Description                               |
 | ---------------- | ----------------------------------------- |

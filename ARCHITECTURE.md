@@ -1,5 +1,7 @@
 # Architecture
 
+## Project structure
+
 ```
 quicksvg/
 ├── apps/
@@ -9,6 +11,17 @@ quicksvg/
 ├── turbo.json        # Turborepo pipeline config
 └── pnpm-workspace.yaml
 ```
+
+## Tech stack
+
+| Layer        | Tools                                                                         |
+| ------------ | ----------------------------------------------------------------------------- |
+| Frontend     | SvelteKit 5, TypeScript, Tailwind CSS v4, shadcn-svelte, Lucide, mode-watcher |
+| Backend      | FastAPI, Python 3.14, vtracer                                                 |
+| Sanitization | DOMPurify                                                                     |
+| Monorepo     | Turborepo, pnpm workspaces                                                    |
+| Quality      | ESLint, Prettier, Ruff, Husky, lint-staged, svelte-check, TypeScript          |
+| Deployment   | Docker Compose, `@sveltejs/adapter-node`, Uvicorn                             |
 
 ## Frontend — `apps/web`
 
@@ -54,4 +67,14 @@ User uploads image
 
 ## Deployment
 
-See [Docker deployment](./README.md#docker-deployment) in README.
+Production runs through Docker Compose (`docker compose up --build`):
+
+- Web UI listens on `:4173` (the `@sveltejs/adapter-node` Node server)
+- API listens on `:8000` behind Uvicorn
+- Persistent volumes: `api_data`, `api_logs` — survive container restarts
+
+### Production notes
+
+- Put behind a reverse proxy (Caddy, Nginx, Traefik) for TLS. Set `ORIGIN` on the web service to match your public URL.
+- No auth is built in — front it with a proxy (Cloudflare Access, Authentik, oauth2-proxy) if you need it.
+- Persistent volumes keep data and logs across rebuilds. Back them up like any other Docker volume.
